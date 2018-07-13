@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/EnableButton"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#00ff00"
+        android:text="Enable"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="enable"/>
+
+    <Button
+        android:id="@+id/AddFoulButton"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#d7c41a"
+        android:text="Add Foul"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/EnableButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/AddCargoButton"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="Add Cargo"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/AddFoulButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/RefTeamText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Refery Team"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Time- 0:00"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/RefTeamText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/StateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:text="State- Auto"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Butt2Text"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#ff0000"
+        android:text="Button2 Unpressed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StateText" />
+
+    <Button
+        android:id="@+id/Butt1Text"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#ff0000"
+        android:text="Button1 Unpressed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RefTeamText" />
+
+    <Button
+        android:id="@+id/RemCargoButton"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:background="#0000ff"
+        android:text="Remove Cargo"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/RemFoulButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/RemFoulButton"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="Remove Foul"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/DisableButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/DisableButton"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:background="#ff0000"
+        android:text="Disable"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="disable" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChooseRobotActivity">
+
+    <Button
+        android:id="@+id/Red1Button"
+        android:layout_width="130dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:background="#ff0000"
+        android:text="robot red one"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/Blue1Button"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="red1"/>
+
+    <TextView
+        android:id="@+id/ChooseRobotTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="30dp"
+        android:text="Choose a Robot"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Red2Button"
+        android:layout_width="130dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#ff0000"
+        android:text="Robot Red Two"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/Blue2Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="red2"/>
+
+    <Button
+        android:id="@+id/Blue1Button"
+        android:layout_width="130dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:background="#0000ff"
+        android:text="Robot Blue One"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="blue1"/>
+
+    <Button
+        android:id="@+id/Blue2Button"
+        android:layout_width="130dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#0000ff"
+        android:text="Robot blue two"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="blue2"/>
+</android.support.constraint.ConstraintLayout>
