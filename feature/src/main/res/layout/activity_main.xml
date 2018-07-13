@@ -44,7 +44,8 @@
         android:text="Add Cargo"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/AddFoulButton"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="addCargo"/>
 
     <TextView
         android:id="@+id/RefTeamText"
@@ -117,7 +118,8 @@
         android:text="Remove Cargo"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/RemFoulButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="removeCargo"/>
 
     <Button
         android:id="@+id/RemFoulButton"

@@ -30,16 +30,30 @@ class MainActivity : AppCompatActivity() {
         setTime()
     }
 
+    fun addCargo(view: View){
+        var intent = Intent(this, ChooseCargoActivity::class.java)
+        intent.putExtra("messageKind", MessageType.AddC.toString())
+        Toast.makeText(this, "Choose the cargo to add", Toast.LENGTH_SHORT).show()
+        startActivity(intent)
+    }
+
+    fun removeCargo(view: View){
+        var intent = Intent(this, ChooseCargoActivity::class.java)
+        intent.putExtra("messageKind", MessageType.RemC.toString())
+        Toast.makeText(this, "Choose the cargo to remove", Toast.LENGTH_SHORT).show()
+        startActivity(intent)
+    }
+
     fun enable(view: View){
         var intent = Intent(this, ChooseRobotActivity::class.java)
-        intent.putExtra("messageKind", "Enable")
+        intent.putExtra("messageKind", MessageType.Enable.toString())
         Toast.makeText(this, "Choose the robot to enable", Toast.LENGTH_SHORT).show()
         startActivity(intent)
     }
 
     fun disable(view: View){
         var intent = Intent(this, ChooseRobotActivity::class.java)
-        intent.putExtra("messageKind", "Disable")
+        intent.putExtra("messageKind", MessageType.Disable.toString())
         Toast.makeText(this, "Choose the robot to disable", Toast.LENGTH_SHORT).show()
         startActivity(intent)
     }

@@ -15,10 +15,10 @@ class ChooseRobotActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chooserobot)
         val kindStr = intent.getStringExtra("messageKind")
 
-        if(kindStr == "Disable"){
+        if(kindStr == MessageType.Disable.toString()){
             kind = MessageType.Disable
         }
-        else if(kindStr != "Enable"){
+        else if(kindStr != MessageType.Enable.toString()){
             Toast.makeText(this, "something wrong with choose robot", Toast.LENGTH_SHORT).show()
         }
     }
