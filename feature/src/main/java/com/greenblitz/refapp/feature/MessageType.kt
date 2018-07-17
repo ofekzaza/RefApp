@@ -25,5 +25,13 @@ enum class MessageType {
         override fun toString(): String {
             return "Enable"
         }
+    }, RemP{
+        override fun toString(): String{
+            return "RemovePenalty"
+        }
+    }, AddP{
+        override fun toString(): String{
+            return "AddPenalty"
+        }
     };
 }

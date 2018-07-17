@@ -13,11 +13,12 @@
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:background="#123456"
+        android:background="#ff0000"
         android:text="Disable"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="disableFun"/>
 
     <Button
         android:id="@+id/FoulButton"
@@ -30,20 +31,22 @@
         android:text="Foul"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/DisableButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="foul"/>
 
     <Button
-        android:id="@+id/PeneltyButton"
+        android:id="@+id/PenaltyButton"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:background="#ff9933"
-        android:text="Penelty"
+        android:text="Penalty"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/DisableButton"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="penalty"/>
 
     <TextView
         android:id="@+id/FoulText"

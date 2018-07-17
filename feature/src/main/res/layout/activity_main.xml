@@ -31,7 +31,8 @@
         android:text="Add Foul"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/EnableButton"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="addFoul"/>
 
     <Button
         android:id="@+id/AddCargoButton"
@@ -91,7 +92,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:background="#ff0000"
-        android:text="Button2 Unpressed"
+        android:text="Anchor2 closed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StateText" />
 
@@ -103,7 +104,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:background="#ff0000"
-        android:text="Button1 Unpressed"
+        android:text="Anchor1 closed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RefTeamText" />
 
@@ -132,7 +133,8 @@
         android:text="Remove Foul"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/DisableButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="removeFoul"/>
 
     <Button
         android:id="@+id/DisableButton"

@@ -1,5 +1,8 @@
 package com.greenblitz.refapp.feature
 
+import android.content.Intent
+import android.graphics.Color
+import android.media.MediaExtractor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,6 +19,7 @@ class ChooseFoulActivity : AppCompatActivity() {
         var kindStr = intent.getStringExtra("messageKind")
         if(kindStr == MessageType.RemF.toString()){
             DisableButton.setText("Enable")
+            DisableButton.setBackgroundColor(Color.parseColor("#00ff00"))
             kindMes = MessageType.RemF
         }
         else if(kindStr != MessageType.AddF.toString()){
@@ -25,14 +29,30 @@ class ChooseFoulActivity : AppCompatActivity() {
     }
 
     fun disableFun(view: View){
-
+        var helper = MessageType.Disable
+        if(kindMes == MessageType.RemF){
+            helper = MessageType.Enable
+        }
+        var intent2 = Intent(this,  ChooseRobotActivity::class.java)
+        intent2.putExtra("messageKind", helper.toString())
+        Toast.makeText(this, "Choose the robot to "+helper, Toast.LENGTH_SHORT).show()
+        startActivity(intent2)
+        finish()
     }
 
     fun foul(view: View){
-
+        Toast.makeText(this, kindMes.toString(), Toast.LENGTH_SHORT).show()
+        finish()
     }
 
-    fun penelty(view: View){
-
+    fun penalty(view: View){
+        var helper = MessageType.RemP
+        var painting = "Removing Penalty"
+        if(kindMes == MessageType.AddF){
+            helper = MessageType.AddP
+            painting = "Adding Penalty"
+        }
+        Toast.makeText(this, painting, Toast.LENGTH_SHORT).show()
+        finish()
     }
 }

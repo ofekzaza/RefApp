@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     var butt2State = false
     var state = GameState.Pre
     var time = 0
+    var com = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,12 +24,27 @@ class MainActivity : AppCompatActivity() {
         rf = teamRef
         state = GameState.Pre
         time = 0
+
         main()
     }
 
     fun main() {
         buttonsUpdate()
         setTime()
+    }
+
+    fun addFoul(view: View){
+        var intent = Intent(this, ChooseFoulActivity::class.java)
+        intent.putExtra("messageKind", MessageType.AddF.toString())
+        Toast.makeText(this, "Choose the Foul to add", Toast.LENGTH_SHORT).show()
+        startActivity(intent)
+    }
+
+    fun removeFoul(view: View){
+        var intent = Intent(this, ChooseFoulActivity::class.java)
+        intent.putExtra("messageKind", MessageType.RemF.toString())
+        Toast.makeText(this, "Choose the Foul to remove", Toast.LENGTH_SHORT).show()
+        startActivity(intent)
     }
 
     fun addCargo(view: View){
@@ -61,9 +78,12 @@ class MainActivity : AppCompatActivity() {
 
     fun setTime(){
         //this function sets the time text
+
+        //time = com.updateTimeSec()
+
         if(time > 15 && time <= 3.5 * 60){
             state = GameState.Tele
-        } else if( time > 0 && time <= 15) {
+        } else if(time > 0 && time <= 15) {
             state = GameState.Auto
         }
         else if(time > 3.5*60){
@@ -98,12 +118,16 @@ class MainActivity : AppCompatActivity() {
 
     fun buttonsUpdate(){
         //set the text of the text buttons
+
+        //butt1State = com.updateAnchor1()
+        //butt2State = com.updateAnchor2()
+
         if(butt1State){
-            Butt1Text.setText("Button1 Pressed")
+            Butt1Text.setText("Anchor1 open")
             Butt1Text.setBackgroundColor(Color.parseColor("#00ff00"))
         }
         if(butt2State){
-            Butt2Text.setText("Button2 Pressed")
+            Butt2Text.setText("Anchor2 open")
             Butt2Text.setBackgroundColor(Color.parseColor("#00ff00"))
         }
     }
