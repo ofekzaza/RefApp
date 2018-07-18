@@ -1,43 +1,26 @@
 package com.greenblitz.refapp.feature;
 
-import android.os.AsyncTask;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
 
 public class Communication {
-    private int port ;
-    private String addr;
+    public int port = 4590;
+    public String ip = "192.168.1.226";
     private static boolean inite = false;
     private static Communication instance;
-    private Socket socket;
-    private Scanner scan;
-    private PrintStream pw;
-    private BufferedReader in;
-    private DataOutputStream os;
-    private DataInputStream is;
     private JSONObject curJson;
 
     private Communication() throws UnknownHostException, IOException{
-        port = 4590;
-        addr = "127.0.0.1";
-        socket = new Socket("192.168.1.226", 4590);
-        is = new DataInputStream(socket.getInputStream());
-        os = new DataOutputStream(socket.getOutputStream());
-        scan = new Scanner(is);
-        pw = new PrintStream(os);
-        in = new BufferedReader(new InputStreamReader(is));
+
         curJson = null;
     }
 
     public static Communication init() throws UnknownHostException, IOException{
         if(!inite) {
             instance = new Communication();
-            instance.write("hello");
             inite = true;
         }
         return instance;
@@ -45,22 +28,26 @@ public class Communication {
 
     public void writeCargo(MessageType mes, Cargo cartype){
         String str = "{\"Message\":"+mes.toString()+",\"CargoType\":"+cartype.toString()+"}";
-        pw.println(str);
+        WriteTask wt  = new WriteTask();
+        wt.execute(str);
     }
 
     public void write(MessageType mes){
         String str = "{\"Message\":"+mes.toString()+"}";
-        pw.println(str);
+        WriteTask wt  = new WriteTask();
+        wt.execute(str);
     }
 
     public void write(String mes){
         String str = "{\"Message\":"+mes+"}";
-        pw.println(str);
+        WriteTask wt  = new WriteTask();
+        wt.execute(str);
     }
 
     public void writeDisable(MessageType mes, String robot){
         String str = "{\"Message\":"+mes.toString()+",\"Robot\":"+robot+"}";
-        pw.println(str);
+        WriteTask wt  = new WriteTask();
+        wt.execute(str);
     }
 
     public void writeTeam(String team){
@@ -68,22 +55,22 @@ public class Communication {
             return ;
         }
         String str = "{\"Message\":Team,\"CargoType\":"+team+"}";
-        pw.println(str);
+        WriteTask wt  = new WriteTask();
+        wt.execute(str);
     }
 
     public void writeCannon(MessageType mes, String robot){
         String str = "{\"Message\":Cannon,\"State\":Fired}";
-        pw.println(str);
+        WriteTask wt  = new WriteTask();
+        wt.execute(str);
     }
 
-    public JSONObject read() throws IOException, JSONException{
-        JSONObject json = new JSONObject(in.readLine());
-        if(json != null) {
-            curJson = json;
-
-            return json;
-        }
-        return null;
+    public JSONObject read() throws IOException, JSONException, InterruptedException{
+        ReadTask rt = new ReadTask();
+        rt.execute();
+        Thread.sleep(10);
+        curJson = rt.getJson();
+        return curJson;
     }
 
     public int updateTimeSec() throws  JSONException{
@@ -111,22 +98,6 @@ public class Communication {
             return curJson.getBoolean("Anchor2");
         }
         return false;
-    }
-
-    public void finalize() throws  IOException{
-        in.close();
-        pw.close();
-        os.close();
-        scan.close();
-        socket.close();
-    }
-
-    class myTask extends AsyncTask<Void, Void, Void>{
-
-        @Override
-        protected Void doInBackground(Void ...params){
-            return null;
-        }
     }
 
 }

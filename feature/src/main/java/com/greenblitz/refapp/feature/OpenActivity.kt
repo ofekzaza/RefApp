@@ -8,16 +8,14 @@ import android.view.View
 import android.widget.Toast
 
 class OpenActivity : AppCompatActivity() {
-    //var com = Communication.init()
+    var com = Communication.init()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_open)
-        //var server = Server.init()
-        //Thread(server.run()).start()
     }
     fun ChooseRed(view: View){
-        //com.writeTeam("Red")
+        com.writeTeam("Red")
 
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("TeamRef", "Red")
@@ -26,7 +24,7 @@ class OpenActivity : AppCompatActivity() {
     }
 
     fun ChooseBlue(view: View){
-        //com.writeTeam("Blue")
+        com.writeTeam("Blue")
 
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("TeamRef", "Blue")

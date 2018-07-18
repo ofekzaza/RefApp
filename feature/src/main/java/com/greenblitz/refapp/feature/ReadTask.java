@@ -1,5 +1,7 @@
 package com.greenblitz.refapp.feature;
 
+import android.os.AsyncTask;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,28 +11,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-/**
- * Created by ofeke on 7/17/2018.
- */
-public class ReadThread extends Thread{
-    private JSONObject json = null;
-    private String ip = "127.0.0.1";
-    private int port = 4590;
+public class ReadTask extends AsyncTask<String, Void, Void> {
     private Socket socket;
-    private BufferedReader in;
     private DataInputStream is;
+    private BufferedReader in;
+    private JSONObject json;
 
-    public ReadThread(){
+    @Override
+    protected Void doInBackground(String ... voids){
 
-    }
-
-    public JSONObject getJson(){
-        return json;
-    }
-
-    public void run(){
         try{
-            socket = new Socket(ip, port);
+            socket = new Socket(Communication.init().ip, Communication.init().port);
             is = new DataInputStream(socket.getInputStream());
             in = new BufferedReader(new InputStreamReader(is));
 
@@ -38,16 +29,22 @@ public class ReadThread extends Thread{
                 JSONObject curjson = new JSONObject(in.readLine());
                 if(curjson != null) {
                     json = curjson;
-
-                    return ;
+                    System.out.println("curjson is something");
+                    return null;
                 }
-                return ;
-            }catch (JSONException y){
+                System.out.println("curjson is null");
 
+                return null;
+            }catch (JSONException y){
+                y.printStackTrace();
             }
         } catch(IOException x){
-
+            x.printStackTrace();
         }
+        return null;
+    }
+
+    public JSONObject getJson() {
+        return json;
     }
 }
-
