@@ -23,22 +23,27 @@ class ChooseCargoActivity : AppCompatActivity() {
 
     fun Alliance(view: View){
         Toast.makeText(this, "Alliance Cargo have been added", Toast.LENGTH_SHORT).show()
+        Communication.init().writeCargo(kindMes, Cargo.Alliance)
         finish()
     }
     fun Barrel(view: View){
         Toast.makeText(this, "Barrel have been added", Toast.LENGTH_SHORT).show()
+        Communication.init().writeCargo(kindMes, Cargo.Barrel)
         finish()
     }
     fun Box(view: View){
         Toast.makeText(this, "Box have been added", Toast.LENGTH_SHORT).show()
+        Communication.init().writeCargo(kindMes, Cargo.Box)
         finish()
     }
     fun Crate(view: View){
         Toast.makeText(this, "Crate have been added", Toast.LENGTH_SHORT).show()
+        Communication.init().writeCargo(kindMes, Cargo.Crate)
         finish()
     }
     fun Treasure(view: View){
         Toast.makeText(this, "Treasure have been added", Toast.LENGTH_SHORT).show()
+        Communication.init().writeCargo(kindMes, Cargo.Treasure)
         finish()
     }
 }

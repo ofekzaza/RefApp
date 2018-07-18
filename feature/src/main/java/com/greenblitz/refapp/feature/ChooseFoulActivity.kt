@@ -42,6 +42,7 @@ class ChooseFoulActivity : AppCompatActivity() {
 
     fun foul(view: View){
         Toast.makeText(this, kindMes.toString(), Toast.LENGTH_SHORT).show()
+        Communication.init().write(kindMes)
         finish()
     }
 
@@ -52,6 +53,7 @@ class ChooseFoulActivity : AppCompatActivity() {
             helper = MessageType.AddP
             painting = "Adding Penalty"
         }
+        Communication.init().write(kindMes)
         Toast.makeText(this, painting, Toast.LENGTH_SHORT).show()
         finish()
     }

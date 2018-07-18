@@ -1,5 +1,7 @@
 package com.greenblitz.refapp.feature;
 
+import android.widget.Toast;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,6 +14,7 @@ public class Communication {
     private static boolean inite = false;
     private static Communication instance;
     private JSONObject curJson;
+    private int callCannon = 0;
 
     private Communication() throws UnknownHostException, IOException{
 
@@ -59,8 +62,12 @@ public class Communication {
         wt.execute(str);
     }
 
-    public void writeCannon(MessageType mes, String robot){
-        String str = "{\"Message\":Cannon,\"State\":Fired}";
+    public void writeCannon(){
+        callCannon++;
+        if(callCannon > 1){
+            return ;
+        }
+        String str = "{\"Message\":Cannon}";
         WriteTask wt  = new WriteTask();
         wt.execute(str);
     }
@@ -73,14 +80,15 @@ public class Communication {
         return curJson;
     }
 
-    public int updateTimeSec() throws  JSONException{
+    public int getTimeSec() throws  JSONException{
         if (curJson == null){
             return 0;
         }
         return curJson.getInt("Time");
     }
 
-    public boolean updateAnchor1() throws  JSONException{
+    public boolean getAnchor1State() throws  JSONException{
+        //return the current state if anchor 1 true pressed, false unpressed
         if (curJson == null){
             return false;
         }
@@ -90,7 +98,8 @@ public class Communication {
         return false;
     }
 
-    public boolean updateAnchor2() throws  JSONException{
+    public boolean getAnchor2State() throws  JSONException{
+        //return the current state if anchor 2 true pressed, false unpressed
         if (curJson == null){
             return false;
         }
@@ -99,5 +108,22 @@ public class Communication {
         }
         return false;
     }
+    public GameState getGameState() throws  JSONException{
+        //return the current state of the game
+        if (curJson == null){
+            return GameState.Pre;
+        }
+        if(curJson.has("Anchor2")) {
+            String state = curJson.getString("State");
+            if(state == "Auto")
+                return GameState.Auto;
+            if(state == "Tele")
+                return GameState.Tele;
+            if(state == "Post")
+                return GameState.Post;
+        }
+        return GameState.Pre;
+    }
+
 
 }

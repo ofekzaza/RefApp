@@ -11,14 +11,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class ReadTask extends AsyncTask<String, Void, Void> {
+public class ReadTask extends AsyncTask<Void, Void, Void> {
     private Socket socket;
     private DataInputStream is;
     private BufferedReader in;
     private JSONObject json;
 
     @Override
-    protected Void doInBackground(String ... voids){
+    protected Void doInBackground(Void ... voids){
 
         try{
             socket = new Socket(Communication.init().ip, Communication.init().port);

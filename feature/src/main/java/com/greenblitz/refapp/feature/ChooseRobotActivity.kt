@@ -33,21 +33,21 @@ class ChooseRobotActivity : AppCompatActivity() {
     fun red2(view: View){
         val intent = Intent(this, ConfirmationActivity::class.java)
         intent.putExtra("messageKind", kind.toString())
-        intent.putExtra("whichRobot", "Red1")
+        intent.putExtra("whichRobot", "Red2")
         startActivity(intent)
         finish()
     }
     fun blue1(view: View){
         val intent = Intent(this, ConfirmationActivity::class.java)
         intent.putExtra("messageKind", kind.toString())
-        intent.putExtra("whichRobot", "Red1")
+        intent.putExtra("whichRobot", "Blue1")
         startActivity(intent)
         finish()
     }
     fun blue2(view: View){
         val intent = Intent(this, ConfirmationActivity::class.java)
         intent.putExtra("messageKind", kind.toString())
-        intent.putExtra("whichRobot", "Red1")
+        intent.putExtra("whichRobot", "Blue2")
         startActivity(intent)
         finish()
     }

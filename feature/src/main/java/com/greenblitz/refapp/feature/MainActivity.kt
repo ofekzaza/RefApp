@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     var butt2State = false
     var state = GameState.Pre
     var time = 0
-    var com = 0
+    var com = Communication.init()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +31,12 @@ class MainActivity : AppCompatActivity() {
     fun main() {
         buttonsUpdate()
         setTime()
+    }
+
+    fun callCannon(view: View){
+        var intent = Intent(this, CheckCannonActivity::class.java)
+        Toast.makeText(this, "have they realy fired the cannon", Toast.LENGTH_SHORT).show()
+        startActivity(intent)
     }
 
     fun addFoul(view: View){
@@ -80,15 +86,9 @@ class MainActivity : AppCompatActivity() {
         //this function sets the time text
 
         //time = com.updateTimeSec()
+        state = com.getGameState()
+        time = com.getTimeSec()
 
-        if(time > 15 && time <= 3.5 * 60){
-            state = GameState.Tele
-        } else if(time > 0 && time <= 15) {
-            state = GameState.Auto
-        }
-        else if(time > 3.5*60){
-            state = GameState.Ended
-        }
         if(state == GameState.Pre){
             TimeText.setTextColor(Color.parseColor("#ff0000"))
             StateText.setText("State- Pre")
@@ -103,8 +103,8 @@ class MainActivity : AppCompatActivity() {
             StateText.setTextColor(Color.parseColor("#00ff00"))
             TimeText.setText("Time- "+(time/60).toString()+":"+(time%60).toString())
             TimeText.setTextColor(Color.parseColor("#00ff00"))
-        } else if(state == GameState.Ended) {
-            StateText.setText("State- Ended")
+        } else if(state == GameState.Post) {
+            StateText.setText("State- Post")
             StateText.setTextColor(Color.parseColor("#ff0000"))
             TimeText.setTextColor(Color.parseColor("#ff0000"))
             if (time / 60 > 9) {
@@ -144,6 +144,3 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-enum class GameState{
-    Pre, Auto, Tele, Ended
-}

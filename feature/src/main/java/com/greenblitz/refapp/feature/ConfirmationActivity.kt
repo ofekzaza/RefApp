@@ -28,6 +28,7 @@ class ConfirmationActivity : AppCompatActivity() {
 
     fun send(view: View){
         Toast.makeText(this, robot+" is getting "+kind.toString(), Toast.LENGTH_SHORT).show()
+        Communication.init().writeDisable(kind, robot)
         finish()
     }
     fun goBack(view: View){
