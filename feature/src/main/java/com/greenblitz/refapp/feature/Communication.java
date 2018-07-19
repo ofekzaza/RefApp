@@ -2,6 +2,7 @@ package com.greenblitz.refapp.feature;
 
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,6 +37,7 @@ public class Communication {
     }
 
     public void write(MessageType mes){
+        //you write fouls and penalty's through here
         String str = "{\"Message\":"+mes.toString()+"}";
         WriteTask wt  = new WriteTask();
         wt.execute(str);
@@ -70,6 +72,10 @@ public class Communication {
         String str = "{\"Message\":Cannon}";
         WriteTask wt  = new WriteTask();
         wt.execute(str);
+    }
+
+    public void setJson(JSONObject json){
+        curJson = json;
     }
 
     public JSONObject read() throws IOException, JSONException, InterruptedException{

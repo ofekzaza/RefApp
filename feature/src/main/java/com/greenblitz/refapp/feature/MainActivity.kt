@@ -25,12 +25,14 @@ class MainActivity : AppCompatActivity() {
         state = GameState.Pre
         time = 0
 
-        main()
+       main()
     }
 
     fun main() {
-        buttonsUpdate()
         setTime()
+        buttonsUpdate()
+        var update = Updating();
+        update.execute(MainActivity())
     }
 
     fun callCannon(view: View){
@@ -89,6 +91,10 @@ class MainActivity : AppCompatActivity() {
         state = com.getGameState()
         time = com.getTimeSec()
 
+        if(state == GameState.Post){
+            startPostGame()
+        }
+
         if(state == GameState.Pre){
             TimeText.setTextColor(Color.parseColor("#ff0000"))
             StateText.setText("State- Pre")
@@ -142,5 +148,10 @@ class MainActivity : AppCompatActivity() {
             RefTeamText.setTextColor(Color.parseColor("#ff0000"))
         }
     }
+
+    fun startPostGame(){
+
+    }
+
 }
 

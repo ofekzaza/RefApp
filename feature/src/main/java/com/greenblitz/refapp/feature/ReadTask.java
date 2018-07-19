@@ -12,6 +12,10 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 public class ReadTask extends AsyncTask<Void, Void, Void> {
+    /**
+     * this thread is responsible on reading from the socket
+     */
+
     private Socket socket;
     private DataInputStream is;
     private BufferedReader in;
@@ -29,10 +33,8 @@ public class ReadTask extends AsyncTask<Void, Void, Void> {
                 JSONObject curjson = new JSONObject(in.readLine());
                 if(curjson != null) {
                     json = curjson;
-                    System.out.println("curjson is something");
                     return null;
                 }
-                System.out.println("curjson is null");
 
                 return null;
             }catch (JSONException y){
