@@ -78,14 +78,6 @@ public class Communication {
         curJson = json;
     }
 
-    public JSONObject read() throws IOException, JSONException, InterruptedException{
-        ReadTask rt = new ReadTask();
-        rt.execute();
-        Thread.sleep(10);
-        curJson = rt.getJson();
-        return curJson;
-    }
-
     public int getTimeSec() throws  JSONException{
         if (curJson == null){
             return 0;

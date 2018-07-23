@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     var state = GameState.Pre
     var time = 0
     var com = Communication.init()
-
+    var reading = readThread()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,24 +24,28 @@ class MainActivity : AppCompatActivity() {
         rf = teamRef
         state = GameState.Pre
         time = 0
-
-       main()
+        println("start working faggot json")
+        reading.execute()
+        main()
     }
 
     fun main() {
         setTime()
         buttonsUpdate()
-        var update = Updating();
-        update.execute(MainActivity())
+
+        //var update = Updating();
+        //update.execute(MainActivity())
     }
 
     fun callCannon(view: View){
         var intent = Intent(this, CheckCannonActivity::class.java)
         Toast.makeText(this, "have they realy fired the cannon", Toast.LENGTH_SHORT).show()
+        main()
         startActivity(intent)
     }
 
     fun addFoul(view: View){
+        main()
         var intent = Intent(this, ChooseFoulActivity::class.java)
         intent.putExtra("messageKind", MessageType.AddF.toString())
         Toast.makeText(this, "Choose the Foul to add", Toast.LENGTH_SHORT).show()
@@ -49,6 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun removeFoul(view: View){
+        main()
         var intent = Intent(this, ChooseFoulActivity::class.java)
         intent.putExtra("messageKind", MessageType.RemF.toString())
         Toast.makeText(this, "Choose the Foul to remove", Toast.LENGTH_SHORT).show()
@@ -56,6 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addCargo(view: View){
+        main()
         var intent = Intent(this, ChooseCargoActivity::class.java)
         intent.putExtra("messageKind", MessageType.AddC.toString())
         Toast.makeText(this, "Choose the cargo to add", Toast.LENGTH_SHORT).show()
@@ -63,6 +69,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun removeCargo(view: View){
+        main()
         var intent = Intent(this, ChooseCargoActivity::class.java)
         intent.putExtra("messageKind", MessageType.RemC.toString())
         Toast.makeText(this, "Choose the cargo to remove", Toast.LENGTH_SHORT).show()
@@ -70,6 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun enable(view: View){
+        main()
         var intent = Intent(this, ChooseRobotActivity::class.java)
         intent.putExtra("messageKind", MessageType.Enable.toString())
         Toast.makeText(this, "Choose the robot to enable", Toast.LENGTH_SHORT).show()
@@ -125,8 +133,8 @@ class MainActivity : AppCompatActivity() {
     fun buttonsUpdate(){
         //set the text of the text buttons
 
-        //butt1State = com.updateAnchor1()
-        //butt2State = com.updateAnchor2()
+        butt1State = com.getAnchor1State()
+        butt2State = com.getAnchor2State()
 
         if(butt1State){
             Butt1Text.setText("Anchor1 open")
@@ -154,4 +162,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
