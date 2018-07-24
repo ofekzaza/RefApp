@@ -16,7 +16,7 @@ class OpenActivity : AppCompatActivity() {
     }
     fun ChooseRed(view: View){
         com.writeTeam("Red")
-
+        println("dddd red have been chsoen")
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("TeamRef", "Red")
         Toast.makeText(this, "You are Red", Toast.LENGTH_SHORT).show()
@@ -25,7 +25,7 @@ class OpenActivity : AppCompatActivity() {
 
     fun ChooseBlue(view: View){
         com.writeTeam("Blue")
-
+        println("dddd blue have been chsoen")
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("TeamRef", "Blue")
         Toast.makeText(this, "You are Blue", Toast.LENGTH_SHORT).show()

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     var state = GameState.Pre
     var time = 0
     var com = Communication.init()
-    var reading = readThread()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         state = GameState.Pre
         time = 0
         println("start working faggot json")
-        reading.execute()
         main()
     }
 
@@ -38,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun callCannon(view: View){
+        main()
         var intent = Intent(this, CheckCannonActivity::class.java)
         Toast.makeText(this, "have they realy fired the cannon", Toast.LENGTH_SHORT).show()
         main()
@@ -85,6 +85,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun disable(view: View){
+        main()
         var intent = Intent(this, ChooseRobotActivity::class.java)
         intent.putExtra("messageKind", MessageType.Disable.toString())
         Toast.makeText(this, "Choose the robot to disable", Toast.LENGTH_SHORT).show()
@@ -95,46 +96,48 @@ class MainActivity : AppCompatActivity() {
     fun setTime(){
         //this function sets the time text
 
+        println("jsonis setting time")
         //time = com.updateTimeSec()
-        state = com.getGameState()
+        state = com.getWorkingGameState()
         time = com.getTimeSec()
+        TimeText.setText("Time- "+(time/60).toString()+":"+(time%60).toString())
+        StateText.setText(state.toString())
 
-        if(state == GameState.Post){
+        print("jsonis "+ time + " fdsjhursni  "+ state.toString())
+
+        if(state== GameState.Post){
             startPostGame()
         }
 
         if(state == GameState.Pre){
             TimeText.setTextColor(Color.parseColor("#ff0000"))
-            StateText.setText("State- Pre")
+           // StateText.setText("State- Pre")
             StateText.setTextColor(Color.parseColor("#ff0000"))
         } else if (state == GameState.Tele){
-            StateText.setText("State- Tele")
+            //StateText.setText("State- Tele")
             StateText.setTextColor(Color.parseColor("#00ff00"))
-            TimeText.setText("Time- "+(time/60).toString()+":"+(time%60).toString())
             TimeText.setTextColor(Color.parseColor("#00ff00"))
         } else if (state == GameState.Auto){
-            StateText.setText("State- Auto")
+            //StateText.setText("State- Auto")
             StateText.setTextColor(Color.parseColor("#00ff00"))
-            TimeText.setText("Time- "+(time/60).toString()+":"+(time%60).toString())
+            //TimeText.setText("Time- "+(time/60).toString()+":"+(time%60).toString())
             TimeText.setTextColor(Color.parseColor("#00ff00"))
         } else if(state == GameState.Post) {
-            StateText.setText("State- Post")
+            //StateText.setText("State- Post")
             StateText.setTextColor(Color.parseColor("#ff0000"))
-            TimeText.setTextColor(Color.parseColor("#ff0000"))
-            if (time / 60 > 9) {
-                TimeText.setText("Time- XXXX")
-            } else {
-                TimeText.setText("Time- " + (time / 60).toString() + ":" + (time % 60).toString())
-
-            }
+            //TimeText.setTextColor(Color.parseColor("#ff0000"))
         }
+        println(" jsonis finished setting time")
     }
 
     fun buttonsUpdate(){
         //set the text of the text buttons
 
+        println("jsonis updating buttons")
+
         butt1State = com.getAnchor1State()
         butt2State = com.getAnchor2State()
+        println("" + butt1State + " edsfhybcrfevg "+ butt2State)
 
         if(butt1State){
             Butt1Text.setText("Anchor1 open")
@@ -160,5 +163,4 @@ class MainActivity : AppCompatActivity() {
     fun startPostGame(){
 
     }
-
 }

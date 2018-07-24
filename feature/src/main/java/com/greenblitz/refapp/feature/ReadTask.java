@@ -1,77 +1,86 @@
 package com.greenblitz.refapp.feature;
 
-import android.os.AsyncTask;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.Socket;
+import java.util.Scanner;
 
-public class ReadTask extends AsyncTask<Void, Void, Void> {
-    /**
-     * this thread is responsible on reading from the socket
-     */
-
+/**
+ * Created by ofeke on 7/24/2018.
+ */
+public class ReadTask extends Thread {
     private Socket socket;
     private DataInputStream is;
     private BufferedReader in;
     private JSONObject json;
     private Communication com;
-    //private MainActivity instance;
+    private Scanner scan;
+    private PrintStream writer;
+    private Thread thread;
+    private String threadName;
+    private boolean mainWhile = true;
+
+
+    public ReadTask(){
+        threadName = "MainCommThread";
+    }
 
     @Override
-    protected Void doInBackground(Void ... voids){
-        //instance = voids[0];
+    public void run(){
         try{
-            socket = new Socket(Communication.init().ip, 2212);
+            com = Communication.init();
+            socket = new Socket("192.168.1.226", 2212);
+            socket.setReuseAddress(true);
+            writer = new PrintStream(socket.getOutputStream());
             is = new DataInputStream(socket.getInputStream());
             in = new BufferedReader(new InputStreamReader(is));
-            com = Communication.init();
-            System.out.println("json reading");
-            //json  = null;
-            boolean comeon = true;
-            while(comeon) {
-                json = new JSONObject(in.readLine());
+            scan = new Scanner(is);
+
+            while(mainWhile){
+                while(!scan.hasNext()){}
                 try{
-                    if(json.getString("State") != null){
-                        comeon = false;
-                    }
-                }catch (Exception x){
+                    json = new JSONObject(scan.next());
+                    com.setJson(json);
+                    System.out.println("debug jsonis "+ json.toString());
+                }catch(JSONException x){
                     x.printStackTrace();
                 }
-                System.out.println("json have read");
             }
 
-            while (json == null || json.getString("State").toString() != "Post"){
-                System.out.println("State + " + json.getString("State"));
-                if(json.getString("State").toString() == "Porst"){
-                    break;
-                }
-                com.setJson(json);
-                Thread.sleep(400);
-               // instance.setTime();
-               // instance.buttonsUpdate();
-                if(json != null) {
-                    System.out.println("json " + json.toString());
-                }
-                System.out.println("json reading loop");
-                json = new JSONObject(in.readLine());
-                System.out.println("json next loop");
-            }
-            System.out.println("json finished?");
-            com.setJson(json);
-            return null;
-        } catch(Exception x){
+            writer.close();
+            scan.close();
+            in.close();
+            is.close();
+        }catch(Exception x){
             x.printStackTrace();
         }
-        return null;
     }
 
-    public JSONObject getJson() {
-        return json;
+    public void start () {
+        System.out.println("Starting " +  threadName );
+        if (thread == null) {
+            thread = new Thread (this, threadName);
+            thread.start ();
+        }
     }
+
+    public PrintStream getPrintStream(){
+        return writer;
+    }
+
+    public void writeMessage(String mes){
+        WriteTask wc = new WriteTask(mes, this);
+        wc.start();
+    }
+
+    public void setOff(){
+        //dont fucking use mate
+        mainWhile = false;
+    }
+
 }
