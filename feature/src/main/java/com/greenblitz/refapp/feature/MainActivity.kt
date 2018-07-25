@@ -170,8 +170,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startPostGame (){
-        //val intent = Intent(this, PostRun::class.java)
-        //startActivity(intent)
+        val intent = Intent(this, PostRun::class.java)
+        startActivity(intent)
         updating = false
     }
 }
