@@ -18,11 +18,11 @@ public class WriteTask extends Thread {
     @Override
     public void run(){
         readTaskInstance.getPrintStream().println(message);
-        System.out.println("sended");
+        //System.out.println("sended");
     }
 
     public void start () {
-        System.out.println("Starting " +  threadName );
+       // System.out.println("Starting " +  threadName );
         if (thread == null) {
             thread = new Thread (this, threadName);
             thread.start ();

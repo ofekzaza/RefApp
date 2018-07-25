@@ -34,7 +34,7 @@ public class ReadTask extends Thread {
     public void run(){
         try{
             com = Communication.init();
-            socket = new Socket("192.168.1.226", 2212);
+            socket = new Socket(com.ip, com.port);
             socket.setReuseAddress(true);
             writer = new PrintStream(socket.getOutputStream());
             is = new DataInputStream(socket.getInputStream());
@@ -46,7 +46,7 @@ public class ReadTask extends Thread {
                 try{
                     json = new JSONObject(scan.next());
                     com.setJson(json);
-                    System.out.println("debug jsonis "+ json.toString());
+                   // System.out.println("debug jsonis "+ json.toString());
                 }catch(JSONException x){
                     x.printStackTrace();
                 }
@@ -62,7 +62,7 @@ public class ReadTask extends Thread {
     }
 
     public void start () {
-        System.out.println("Starting " +  threadName );
+        //System.out.println("Starting " +  threadName );
         if (thread == null) {
             thread = new Thread (this, threadName);
             thread.start ();

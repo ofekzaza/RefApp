@@ -11,12 +11,13 @@ import java.net.*;
 
 public class Communication {
     public int port = 4590;
-    public String ip = "192.168.1.226";
+    public String ip = "192.168.8.2";
     private static boolean inite = false;
     private static Communication instance;
     private JSONObject curJson;
     private int callCannon = 0;
     private ReadTask rt;
+    private int[] cargoDelta;
 
     private Communication() throws IOException{
         curJson = null;
@@ -25,7 +26,9 @@ public class Communication {
         System.out.println("debug reading have been created");
         rt.start();
         System.out.println("debug reading have started");
+        cargoDelta = new int[5];
     }
+
 
     public static Communication init() throws UnknownHostException, IOException{
         if(!inite) {
@@ -34,6 +37,35 @@ public class Communication {
         }
         return instance;
     }
+
+    public void addCargo(Cargo car, boolean added){
+        int i = new Integer(5);
+        switch (car){
+            case Alliance:
+                i = 0;
+                break;
+            case Barrel:
+                i = 1;
+                break;
+            case Box:
+                i = 2;
+                break;
+            case Crate:
+                i = 3;
+                break;
+            case Treasure:
+                i = 4;
+                break;
+        }
+        if(added){
+            cargoDelta[i] ++;
+            return;
+        }
+        if(cargoDelta[i] > 0)
+            cargoDelta[i] --;
+        return;
+    }
+
 
     public void writeCargo(MessageType mes, Cargo cartype){
         String str = "{\"Message\":"+mes.toString()+",\"CargoType\":"+cartype.toString()+"}";
@@ -80,6 +112,9 @@ public class Communication {
 
     public int getTimeSec() throws  JSONException{
         if (curJson == null){
+            return 0;
+        }
+        if (!curJson.has("Time")){
             return 0;
         }
         return curJson.getInt("Time");

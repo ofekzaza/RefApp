@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     var state = GameState.Pre
     var time = 0
     var com = Communication.init()
+    var updating = true;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,12 @@ class MainActivity : AppCompatActivity() {
         state = GameState.Pre
         time = 0
         println("start working faggot json")
+        //var update = Updater(this@MainActivity, "updater")
+        //update.start()
+        main()
+    }
+
+    fun update(view: View){
         main()
     }
 
@@ -40,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         main()
         var intent = Intent(this, CheckCannonActivity::class.java)
         Toast.makeText(this, "have they realy fired the cannon", Toast.LENGTH_SHORT).show()
-        main()
         startActivity(intent)
     }
 
@@ -161,6 +167,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startPostGame(){
-
+        updating = false
     }
 }
