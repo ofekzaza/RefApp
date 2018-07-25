@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     var time = 0
     var com = Communication.init()
     var updating = true;
+    var areYouSure = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +34,12 @@ class MainActivity : AppCompatActivity() {
 
     fun update(view: View){
         main()
+
+        if(com.getTimeSec() >= 3.5*60&&areYouSure){
+            startPostGame()
+        }else if(com.getTimeSec() >= 3.5*60){
+            areYouSure = true
+        }
     }
 
     fun main() {
@@ -111,10 +118,6 @@ class MainActivity : AppCompatActivity() {
 
         print("jsonis "+ time + " fdsjhursni  "+ state.toString())
 
-        if(state== GameState.Post){
-            startPostGame()
-        }
-
         if(state == GameState.Pre){
             TimeText.setTextColor(Color.parseColor("#ff0000"))
            // StateText.setText("State- Pre")
@@ -166,7 +169,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun startPostGame(){
+    fun startPostGame (){
+        //val intent = Intent(this, PostRun::class.java)
+        //startActivity(intent)
         updating = false
     }
 }
