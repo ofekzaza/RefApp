@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
@@ -66,6 +67,17 @@ public class ReadTask extends Thread {
         if (thread == null) {
             thread = new Thread (this, threadName);
             thread.start ();
+        }
+    }
+
+    public void finalize(){
+        try{
+            writer.close();
+            scan.close();
+            in.close();
+            is.close();
+        }catch (IOException x){
+            x.printStackTrace();
         }
     }
 
