@@ -1,4 +1,3 @@
-@file:Suppress("DEPRECATION")
 package com.greenblitz.refapp.feature
 
 import android.annotation.SuppressLint

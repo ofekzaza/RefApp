@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 
 public class Communication {
     public int port = 4590;
@@ -66,8 +67,30 @@ public class Communication {
         return;
     }
 
+    public int getBarrel(){
+        return cargoDelta[1];
+    }
+    public int getAlliance(){
+        return cargoDelta[0];
+    }
+
+    public int getBox(){
+        return cargoDelta[2];
+    }
+
+    public int getCrate(){
+        return cargoDelta[3];
+    }
+    public int getTreasure(){
+        return cargoDelta[4];
+    }
 
     public void writeCargo(MessageType mes, Cargo cartype){
+        boolean adding = true;
+        if(mes == MessageType.RemC){
+            adding = false;
+        }
+        addCargo(cartype, adding);
         String str = "{\"Message\":"+mes.toString()+",\"CargoType\":"+cartype.toString()+"}";
         rt.writeMessage(str);
     }
@@ -167,5 +190,8 @@ public class Communication {
         return state;
     }
 
+    public void writePile(ArrayList<ArrayList<Integer>> arr){
+
+    }
 
 }

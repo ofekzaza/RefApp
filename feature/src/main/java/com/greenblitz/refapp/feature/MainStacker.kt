@@ -1,8 +1,5 @@
-@file:Suppress("DEPRECATION")
-
 package com.greenblitz.refapp.feature
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,11 +7,11 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main_stacker.*
 
-@Suppress("TYPEALIAS_EXPANSION_DEPRECATION")
-@SuppressLint("SetTextI18n")
 class MainStacker : AppCompatActivity() {
 
+    private var com = Communication.init()
     private var barrelBtn: Button? = null
     private var allianceCargoBtn: Button? = null
     private var boxBtn: Button? = null

@@ -9,7 +9,6 @@ import android.widget.EditText
 import android.widget.TextView
 
 
-@Suppress("NAME_SHADOWING")
 class DeleteStack : AppCompatActivity() {
     private var stackNumSelect: EditText? = null
     private var stackShow: TextView? = null
@@ -34,11 +33,7 @@ class DeleteStack : AppCompatActivity() {
             dialog.show()
         }
         else {
-            stackShowcaseNum = if (stackShowcaseNum == 0) {
-                Integer.parseInt(height)
-            } else {
-                Integer.parseInt(height)-1
-            }
+            stackShowcaseNum = Integer.parseInt(height)
         }
         when {
             stackShowcaseNum >= PostRun.AllStacks.Stacks.size -> {

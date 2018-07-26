@@ -152,8 +152,7 @@ class MainActivity : AppCompatActivity() {
             Butt1Text.setText("Anchor1 open")
             Butt1Text.setBackgroundColor(Color.parseColor("#00ff00"))
         }
-        if(butt2State){
-            Butt2Text.setText("Anchor2 open")
+        if(butt2State){            Butt2Text.setText("Anchor2 open")
             Butt2Text.setBackgroundColor(Color.parseColor("#00ff00"))
         }
     }

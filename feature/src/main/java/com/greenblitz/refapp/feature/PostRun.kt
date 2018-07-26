@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import java.io.IOException
 
-@Suppress("DEPRECATION")
 class PostRun : AppCompatActivity() {
+
     companion object {
-        var cargoArray = intArrayOf(16, 12, 16, 6, 7)
+        // the current amount of crago of the ref team
+        var cargoArray = intArrayOf(Communication.init().getBarrel(), Communication.init().getAlliance(), Communication.init().getBox(), Communication.init().getCrate(), Communication.init().getTreasure()) // fucking kotlin
     }
 
     enum class Cargoid {
@@ -17,7 +19,7 @@ class PostRun : AppCompatActivity() {
     }
 
     object AllStacks{
-        var Stacks: MutableList<ArrayList<Int>> = mutableListOf()
+        var Stacks: ArrayList<ArrayList<Int>> = arrayListOf()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +44,8 @@ class PostRun : AppCompatActivity() {
 
     fun endPostRun (view: View) {
         // need to send stack data
+        Communication.init().writePile(PostRun.AllStacks.Stacks)
+        Toast.makeText(this, "this is alive", Toast.LENGTH_LONG).show()
         this.finish()
     }
 }
