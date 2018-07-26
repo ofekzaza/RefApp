@@ -1,13 +1,15 @@
 package com.greenblitz.refapp.feature
 
 import android.content.Intent
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import java.io.IOException
 
 class PostRun : AppCompatActivity() {
+    /**
+     * only god and wifi knows whats doing on here
+     */
 
     companion object {
         // the current amount of crago of the ref team
@@ -43,10 +45,9 @@ class PostRun : AppCompatActivity() {
     }
 
     fun endPostRun (view: View) {
-        // need to send stack data
+        // sends the data to the server
         Communication.init().writePile(PostRun.AllStacks.Stacks)
         Toast.makeText(this, "this is alive", Toast.LENGTH_LONG).show()
         this.finish()
     }
 }
-

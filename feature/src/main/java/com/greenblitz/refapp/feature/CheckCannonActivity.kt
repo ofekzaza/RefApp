@@ -6,6 +6,9 @@ import android.view.View
 import android.widget.Toast
 
 class CheckCannonActivity : AppCompatActivity() {
+    /**
+     * firing a cannon is a pretty big deal, you need to check if the ref is truly want to set it on
+     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

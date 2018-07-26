@@ -1,6 +1,9 @@
 package com.greenblitz.refapp.feature;
 
 public class Updater extends Thread {
+    /**
+     * this is the so call updater but! kotlin is shiti dont use it, never ever
+     */
     private String name;
     private Thread thread;
     private MainActivity ma;

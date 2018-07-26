@@ -1,6 +1,9 @@
 package com.greenblitz.refapp.feature
 
 enum class MessageType {
+    /**
+     * those are the types of communication which the application can send to the server
+     */
     AddC{
         override fun toString():String{
             return "AddCargo"

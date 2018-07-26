@@ -9,6 +9,9 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    /**
+     * main activity which called in the start of the application
+     */
     var rf: String = ""
     var butt1State = false
     var butt2State = false
@@ -33,6 +36,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun update(view: View){
+        /**
+         * for some stuiped reason if you are using kotlin there is no auto update so the update is manual when you are pressing on the buttons
+         */
         main()
 
         if(com.getTimeSec() >= 3.5*60&&areYouSure){
@@ -46,8 +52,6 @@ class MainActivity : AppCompatActivity() {
         setTime()
         buttonsUpdate()
 
-        //var update = Updating();
-        //update.execute(MainActivity())
     }
 
     fun callCannon(view: View){
@@ -120,21 +124,15 @@ class MainActivity : AppCompatActivity() {
 
         if(state == GameState.Pre){
             TimeText.setTextColor(Color.parseColor("#ff0000"))
-           // StateText.setText("State- Pre")
             StateText.setTextColor(Color.parseColor("#ff0000"))
         } else if (state == GameState.Tele){
-            //StateText.setText("State- Tele")
             StateText.setTextColor(Color.parseColor("#00ff00"))
             TimeText.setTextColor(Color.parseColor("#00ff00"))
         } else if (state == GameState.Auto){
-            //StateText.setText("State- Auto")
             StateText.setTextColor(Color.parseColor("#00ff00"))
-            //TimeText.setText("Time- "+(time/60).toString()+":"+(time%60).toString())
             TimeText.setTextColor(Color.parseColor("#00ff00"))
         } else if(state == GameState.Post) {
-            //StateText.setText("State- Post")
             StateText.setTextColor(Color.parseColor("#ff0000"))
-            //TimeText.setTextColor(Color.parseColor("#ff0000"))
         }
         println(" jsonis finished setting time")
     }
@@ -169,8 +167,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startPostGame (){
+        /**
+         * this is starting the pile choosing and then its send the data to the server
+         */
         val intent = Intent(this, PostRun::class.java)
         startActivity(intent)
-        updating = false
+        updating = false //  sets the updating on off
+        finish()
     }
 }

@@ -11,13 +11,16 @@ import java.net.*;
 import java.util.ArrayList;
 
 public class Communication {
+    /**
+     * communication is a singalton which responsible for all communication with the server
+     */
     public int port = 4590;
     public String ip = "192.168.8.2";
     private static boolean inite = false;
     private static Communication instance;
     private JSONObject curJson;
     private int callCannon = 0;
-    private ReadTask rt;
+    private ReadTask rt; // read thread dont create two of them
     private int[] cargoDelta;
 
     private Communication() throws IOException{
@@ -121,8 +124,10 @@ public class Communication {
     }
 
     public void writeCannon(){
+        // the cannon have been activeted
         callCannon++;
         if(callCannon > 1){
+            //there are only two cannons some people are realy stuiped
             return ;
         }
         String str = "{\"Message\":Cannon}";
@@ -134,6 +139,7 @@ public class Communication {
     }
 
     public int getTimeSec() throws  JSONException{
+        //give the current time is seconds
         if (curJson == null){
             return 0;
         }
@@ -155,7 +161,9 @@ public class Communication {
     }
 
     public boolean getAnchor2State() throws  JSONException{
+
         //return the current state if anchor 2 true pressed, false unpressed
+
         if (curJson == null){
             return false;
         }
@@ -179,6 +187,9 @@ public class Communication {
         return GameState.Pre;
     }
     public GameState getWorkingGameState() throws JSONException{
+
+        //hard coded works better
+
         int t = getTimeSec();
         GameState state = GameState.Pre;
         if(t > 0)
@@ -190,8 +201,37 @@ public class Communication {
         return state;
     }
 
-    public void writePile(ArrayList<ArrayList<Integer>> arr){
+    public void writePile(ArrayList<ArrayList<Integer>> arl) throws JSONException{
+        //format in the rules @ https://docs.google.com/document/d/16fq_tQZT29nXIGknlA2EAHR2dllp7476EbqBuN_RXX8/edit
+        JSONObject obj = new JSONObject();
+        JSONObject helper;
+        JSONArray ja = new JSONArray();
+        obj.put("Length", arl.size());
 
+
+        //making the Arraylist an json object !
+
+        for(int x = 0; x< arl.size(); x++){
+            helper = new JSONObject();
+            helper.put("Pile", x);
+            helper.put("Length", arl.get(x).size());
+            int h;
+
+            for(Integer y = 0; y < helper.getInt("Length"); y++){
+                h = arl.get(x).get(y);
+                if (h == 0){
+                    helper.put("Cargo"+y, 1);
+                }else if(h == 1){
+                    helper.put("Cargo"+y, 0);
+                }
+                else{
+                    helper.put("Cargo"+y, h);
+                }
+            }
+            ja.put(x, helper);
+        }
+        obj.put("Piles", ja);
+        rt.writeMessage(obj.toString());
     }
 
 }

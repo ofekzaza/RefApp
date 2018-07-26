@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main_stacker.*
 
 class MainStacker : AppCompatActivity() {
 
@@ -28,7 +27,7 @@ class MainStacker : AppCompatActivity() {
         boxBtn = findViewById(R.id.Box)
         crateBtn = findViewById(R.id.Crate)
         treasureBtn = findViewById(R.id.Treasure)
-        currentStackTxt = findViewById(R.id.StackText)
+        currentStackTxt = findViewById(R.id.StackerText)
         currentStack = intent.getIntegerArrayListExtra("currentStack")
         barrelBtn?.text = "Barrel Left: " + PostRun.cargoArray[0]
         allianceCargoBtn?.text = "Alliance Cargoes Left: " + PostRun.cargoArray[1]

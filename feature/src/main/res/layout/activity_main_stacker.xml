@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StackBase">
+    tools:context=".MainStacker">
 
     <TextView
         android:id="@+id/StackText"
@@ -16,6 +16,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp"
         android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -54,7 +55,6 @@
         android:id="@+id/Treasure"
         android:layout_width="190dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="370dp"
         android:backgroundTint="#ffff00"
         android:onClick="addTreasure"
@@ -86,7 +86,6 @@
         android:id="@+id/AllianceCargo"
         android:layout_width="190dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="295dp"
         android:backgroundTint="#ff0000"
         android:onClick="addAllianceCargo"

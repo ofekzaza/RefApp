@@ -1,6 +1,9 @@
 package com.greenblitz.refapp.feature
 
 enum class Foul {
+    /**
+     * types of fouls
+     */
     Foul{
         override fun toString():String{
             return "Foul"

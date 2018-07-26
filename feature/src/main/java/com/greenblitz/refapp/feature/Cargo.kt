@@ -1,6 +1,9 @@
 package com.greenblitz.refapp.feature
 
 enum class Cargo {
+    /**
+     * types of cargo, maybe invalid values
+     */
     Alliance{
         override fun toString():String{
             return "AllianceCargo"

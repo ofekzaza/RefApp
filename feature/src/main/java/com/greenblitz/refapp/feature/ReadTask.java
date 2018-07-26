@@ -15,6 +15,9 @@ import java.util.Scanner;
  * Created by ofeke on 7/24/2018.
  */
 public class ReadTask extends Thread {
+    /**
+     * this thread is responsible for reading data from the server, it is working but on slow devices like mine we have a delay
+     */
     private Socket socket;
     private DataInputStream is;
     private BufferedReader in;
@@ -43,12 +46,12 @@ public class ReadTask extends Thread {
             scan = new Scanner(is);
 
             while(mainWhile){
-                while(!scan.hasNext()){}
-                try{
+                while(!scan.hasNext()){}//waiting for input
+                try{//got input
                     json = new JSONObject(scan.next());
                     com.setJson(json);
                    // System.out.println("debug jsonis "+ json.toString());
-                }catch(JSONException x){
+                }catch(JSONException x){ //well someone is realy stuiped
                     x.printStackTrace();
                 }
             }
@@ -76,7 +79,7 @@ public class ReadTask extends Thread {
             scan.close();
             in.close();
             is.close();
-        }catch (IOException x){
+        }catch (IOException x){// who the hell used set OFF!
             x.printStackTrace();
         }
     }
@@ -86,6 +89,7 @@ public class ReadTask extends Thread {
     }
 
     public void writeMessage(String mes){
+        //with this you are writing messages to the server cause im using only one socket
         WriteTask wc = new WriteTask(mes, this);
         wc.start();
     }

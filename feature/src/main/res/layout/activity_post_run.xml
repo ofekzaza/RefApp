@@ -10,7 +10,6 @@
         android:id="@+id/NewStack"
         android:layout_width="127dp"
         android:layout_height="99dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="172dp"
         android:backgroundTint="@android:color/holo_green_dark"
         android:onClick="newStack"
@@ -28,7 +27,6 @@
         android:id="@+id/DeleteStack"
         android:layout_width="127dp"
         android:layout_height="99dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="172dp"
         android:backgroundTint="#fe2020"
         android:onClick="delStack"
@@ -57,4 +55,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
