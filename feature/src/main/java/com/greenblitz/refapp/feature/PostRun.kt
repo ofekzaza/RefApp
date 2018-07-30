@@ -46,8 +46,9 @@ class PostRun : AppCompatActivity() {
 
     fun endPostRun (view: View) {
         // sends the data to the server
+        //if (AllStacks == null){}
         Communication.init().writePile(PostRun.AllStacks.Stacks)
         Toast.makeText(this, "this is alive", Toast.LENGTH_LONG).show()
-        this.finish()
+        finish()
     }
 }

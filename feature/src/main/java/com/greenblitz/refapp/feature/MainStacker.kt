@@ -124,6 +124,7 @@ class MainStacker : AppCompatActivity() {
             val intent = Intent(this, PostRun::class.java)
             intent.putIntegerArrayListExtra("stack", ArrayList(currentStack))
             startActivity(intent)
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->}
         val dialog: AlertDialog = builder.create()
@@ -138,9 +139,14 @@ class MainStacker : AppCompatActivity() {
             val intent = Intent(this, PostRun::class.java)
             intent.putIntegerArrayListExtra("stack", ArrayList(currentStack))
             startActivity(intent)
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->}
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
+    fun close(){
+        finish()
+    }
+
 }

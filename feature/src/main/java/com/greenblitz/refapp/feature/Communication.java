@@ -209,11 +209,11 @@ public class Communication {
         JSONObject helper;
         JSONArray ja = new JSONArray();
         obj.put("Message", "Piles");
-        obj.put("Length", arl.size());
 
 
         //making the Arraylist an json object !
 
+        int counter = 0;
         for(int x = 0; x< arl.size(); x++){
             helper = new JSONObject();
             helper.put("Pile", x);
@@ -223,17 +223,46 @@ public class Communication {
             for(Integer y = 0; y < helper.getInt("Length"); y++){
                 h = arl.get(x).get(y);
                 if (h == 0){
-                    helper.put("Cargo"+y, 1);
+                    helper.put("Cargo" + y, 1);
+                    cargoDelta[1]--;
                 }else if(h == 1){
-                    helper.put("Cargo"+y, 0);
-                }
-                else{
-                    helper.put("Cargo"+y, h);
+                    helper.put("Cargo" + y, 0);
+                    cargoDelta[0]--;
+                }else {
+                    helper.put("Cargo" + y, h);
+                    cargoDelta[h]--;
                 }
             }
-            ja.put(x, helper);
+            try {
+                if (helper != JSONObject.NULL && helper != null&& helper.toString() != "null") {
+                    ja.put(helper);
+                    System.out.println("JSONJSONfinal"+helper.toString());
+                    counter++;
+                }
+            }catch(Exception s){
+                s.printStackTrace();
+            }
         }
+        for(int i = 0; i < 5; i++){
+            for(int x = 0; x< cargoDelta[i]; x++) {
+                helper = new JSONObject();
+                helper.put("Pile", counter);
+                helper.put("Length", 1);
+                helper.put("Cargo0", i);
+                try {
+                    if (helper != JSONObject.NULL && helper != null && helper.toString() != "null") {
+                        ja.put(helper);
+                        System.out.println("JSONJSONfinal"+helper.toString());
+                    }
+                }catch(Exception s){
+                    s.printStackTrace();
+                }
+                counter++;
+            }
+        }
+        obj.put("Length", counter+1);
         obj.put("Piles", ja);
+        System.out.println("JSONJSONfinal"+obj.toString());
         rt.writeMessage(obj.toString());
     }
 

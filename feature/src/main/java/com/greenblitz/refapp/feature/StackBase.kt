@@ -41,6 +41,7 @@ class StackBase : AppCompatActivity() {
             val intent = Intent(this, MainStacker::class.java)
             intent.putIntegerArrayListExtra("currentStack", ArrayList(currentStack))
             startActivity(intent)
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->}
         val dialog: AlertDialog = builder.create()
@@ -57,6 +58,7 @@ class StackBase : AppCompatActivity() {
             val intent = Intent(this, MainStacker::class.java)
             intent.putIntegerArrayListExtra("currentStack", ArrayList(currentStack))
             startActivity(intent)
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->}
         val dialog: AlertDialog = builder.create()
@@ -72,6 +74,7 @@ class StackBase : AppCompatActivity() {
             val intent = Intent(this, MainStacker::class.java)
             intent.putIntegerArrayListExtra("currentStack", ArrayList(currentStack))
             startActivity(intent)
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->}
         val dialog: AlertDialog = builder.create()
@@ -88,6 +91,7 @@ class StackBase : AppCompatActivity() {
             val intent = Intent(this, MainStacker::class.java)
             intent.putIntegerArrayListExtra("currentStack", ArrayList(currentStack))
             startActivity(intent)
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->}
         val dialog: AlertDialog = builder.create()
@@ -104,6 +108,7 @@ class StackBase : AppCompatActivity() {
             val intent = Intent(this, PostRun::class.java)
             intent.putIntegerArrayListExtra("stack", ArrayList(currentStack))
             startActivity(intent)
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->}
         val dialog: AlertDialog = builder.create()

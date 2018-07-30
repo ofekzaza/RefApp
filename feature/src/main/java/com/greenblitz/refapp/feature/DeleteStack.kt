@@ -72,7 +72,8 @@ class DeleteStack : AppCompatActivity() {
     }
 
     fun returnToMainMenu(view: View) {
-        val intent = Intent(this, PostRun::class.java)
-        startActivity(intent)
+        //val intent = Intent(this, PostRun::class.java)
+        //startActivity(intent)
+        finish()
     }
 }
