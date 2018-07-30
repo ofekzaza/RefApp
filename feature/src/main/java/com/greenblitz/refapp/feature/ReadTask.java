@@ -8,6 +8,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -37,20 +38,24 @@ public class ReadTask extends Thread {
     @Override
     public void run(){
         try{
-            com = Communication.init();
-            socket = new Socket(com.ip, com.port);
-            socket.setReuseAddress(true);
-            writer = new PrintStream(socket.getOutputStream());
+            if (writer == null) {
+                com = Communication.init();
+                socket = new Socket("192.168.1.226", 4590);
+                socket.setReuseAddress(true);
+                writer = new PrintStream(socket.getOutputStream());
+            }
             is = new DataInputStream(socket.getInputStream());
             in = new BufferedReader(new InputStreamReader(is));
             scan = new Scanner(is);
 
             while(mainWhile){
-                while(!scan.hasNext()){}//waiting for input
+                while(!scan.hasNext()){Thread.sleep(10);}//waiting for input
                 try{//got input
+                    //System.out.println("debug json got input");
                     json = new JSONObject(scan.next());
+                   // System.out.println("debug json what is it");
                     com.setJson(json);
-                   // System.out.println("debug jsonis "+ json.toString());
+                    System.out.println("debug jsonis "+ json.toString());
                 }catch(JSONException x){ //well someone is realy stuiped
                     x.printStackTrace();
                 }
@@ -73,6 +78,30 @@ public class ReadTask extends Thread {
         }
     }
 
+    public PrintStream getPrintStream() throws  IOException{
+        if(writer == null){
+            com = Communication.init();
+            socket = new Socket("192.168.1.226", 4590);
+            socket.setReuseAddress(true);
+            writer = new PrintStream(socket.getOutputStream());
+        }
+        System.out.println("writer got sended");
+        return writer;
+    }
+
+    public void writeMessage(String mes){
+        //with this you are writing messages to the server cause im using only one socket
+        WriteTask wc = new WriteTask(mes, this);
+        System.out.println("debug starting writing");
+        wc.start();
+    }
+
+    public void setOff(){
+        //dont fucking use mate
+        mainWhile = false;
+    }
+
+
     public void finalize(){
         try{
             writer.close();
@@ -84,19 +113,5 @@ public class ReadTask extends Thread {
         }
     }
 
-    public PrintStream getPrintStream(){
-        return writer;
-    }
-
-    public void writeMessage(String mes){
-        //with this you are writing messages to the server cause im using only one socket
-        WriteTask wc = new WriteTask(mes, this);
-        wc.start();
-    }
-
-    public void setOff(){
-        //dont fucking use mate
-        mainWhile = false;
-    }
 
 }

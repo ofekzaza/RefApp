@@ -15,7 +15,7 @@ public class Communication {
      * communication is a singalton which responsible for all communication with the server
      */
     public int port = 4590;
-    public String ip = "192.168.8.2";
+    public String ip = " 192.168.1.226";
     private static boolean inite = false;
     private static Communication instance;
     private JSONObject curJson;
@@ -120,7 +120,9 @@ public class Communication {
         }
         System.out.println("debug Writing team");
         String str = "{\"Message\":Team,\"CargoType\":"+team+"}";
+        System.out.println("debug Writing team now");
         rt.writeMessage(str);
+        System.out.println("debug Writing team finished");
     }
 
     public void writeCannon(){
@@ -206,6 +208,7 @@ public class Communication {
         JSONObject obj = new JSONObject();
         JSONObject helper;
         JSONArray ja = new JSONArray();
+        obj.put("Message", "Piles");
         obj.put("Length", arl.size());
 
 

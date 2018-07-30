@@ -1,5 +1,7 @@
 package com.greenblitz.refapp.feature;
 
+import java.io.IOException;
+
 /**
  * Created by ofeke on 7/24/2018.
  */
@@ -17,15 +19,20 @@ public class WriteTask extends Thread {
 
     @Override
     public void run(){
-        readTaskInstance.getPrintStream().println(message);
-        //System.out.println("sended");
+        try {
+            System.out.println("debug sending data "+message);
+            readTaskInstance.getPrintStream().println(message);
+            System.out.println("debug sended data "+message);
+        } catch (IOException x){
+            x.printStackTrace();
+        }
     }
 
     public void start () {
-       // System.out.println("Starting " +  threadName );
+        System.out.println("Starting " +  threadName );
         if (thread == null) {
             thread = new Thread (this, threadName);
-            thread.start ();
+            thread.start();
         }
     }
 }

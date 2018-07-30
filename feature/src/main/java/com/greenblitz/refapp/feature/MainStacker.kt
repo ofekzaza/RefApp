@@ -27,7 +27,7 @@ class MainStacker : AppCompatActivity() {
         boxBtn = findViewById(R.id.Box)
         crateBtn = findViewById(R.id.Crate)
         treasureBtn = findViewById(R.id.Treasure)
-        currentStackTxt = findViewById(R.id.StackerText)
+        currentStackTxt = findViewById(R.id.StackText)
         currentStack = intent.getIntegerArrayListExtra("currentStack")
         barrelBtn?.text = "Barrel Left: " + PostRun.cargoArray[0]
         allianceCargoBtn?.text = "Alliance Cargoes Left: " + PostRun.cargoArray[1]
