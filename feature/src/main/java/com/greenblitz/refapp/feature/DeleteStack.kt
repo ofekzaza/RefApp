@@ -44,6 +44,7 @@ class DeleteStack : AppCompatActivity() {
                 val dialog: AlertDialog = builder.create()
                 dialog.show()
             }
+            PostRun.AllStacks.Stacks[stackShowcaseNum].size == 2 -> stackShow?.text = "Selected stack: \n" + PostRun.Cargoid.values()[PostRun.AllStacks.Stacks[stackShowcaseNum][0]] + "\n" + PostRun.Cargoid.values()[PostRun.AllStacks.Stacks[stackShowcaseNum][1]]
             PostRun.AllStacks.Stacks[stackShowcaseNum].size == 1 -> stackShow?.text = "Selected Stack: \n" + PostRun.Cargoid.values()[PostRun.AllStacks.Stacks[stackShowcaseNum][0]]
             else -> stackShow?.text = "Selected Stack: \n" + PostRun.Cargoid.values()[PostRun.AllStacks.Stacks[stackShowcaseNum][0]] + "\n" + PostRun.Cargoid.values()[PostRun.AllStacks.Stacks[stackShowcaseNum][1]] + "\n ... \n" + PostRun.Cargoid.values()[PostRun.AllStacks.Stacks[stackShowcaseNum][PostRun.AllStacks.Stacks[stackShowcaseNum].size - 1]]
         }
